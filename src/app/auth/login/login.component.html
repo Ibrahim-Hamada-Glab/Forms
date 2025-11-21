@@ -1,17 +1,44 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
   <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" />
+      <input id="email" type="email" formControlName="email" />
+      <div class="control-error">
+        @if (email?.touched && email?.invalid) { @if
+        (email?.errors?.['required']) {
+        <small>Email is required.</small>
+        } @if (email?.errors?.['email']) {
+        <small>Enter a valid email.</small>
+        } }
+      </div>
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" />
+      <input id="password" type="password" formControlName="password" />
+      <div class="control-error">
+        @if (password?.touched && password?.invalid) { @if
+        (password?.errors?.['required']) {
+        <small>Password is required.</small>
+        } @if (password?.errors?.['minlength']) {
+        <small>
+          Password must be at least
+          {{ password?.errors?.['minlength'].requiredLength }} characters.
+        </small>
+        } }
+      </div>
     </div>
 
-    <button class="button">Login</button>
+    <button type="submit" [disabled]="submitting()">
+      {{ submitting() ? "Logging in..." : "Login" }}
+    </button>
+  </div>
+
+  <div class="server-error">
+    @if (form.errors?.['invalidCredentials']) {
+    <small>Invalid email or password.</small>
+    }
   </div>
 </form>

@@ -1,11 +1,54 @@
 .control-row {
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .control {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.control input {
+  margin-bottom: 0;
+}
+
+.control-error {
+  min-height: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  display: block;
 }
 
 button {
   padding: 0.6rem 1.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: #147b73;
+  color: #d9e2f1;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s ease;
+  width: auto;
+  margin: 0 auto;
 }
+
+ button:disabled {
+  background-color: #758a8a;
+  cursor: not-allowed;
+ }
+
+ .server-error {
+  min-height: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  display: block;
+  color: #ffca99;
+  font-size: 1.25rem;
+  margin-left: 0.25rem;
+  text-align: center;
+  font-weight: 700;
+ }
